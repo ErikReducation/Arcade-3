@@ -1,0 +1,43 @@
+/*Requirements
+style borders, td, th, background
+*/
+
+#main {
+    color:blueviolet;
+    text-align: center;
+    margin: 25px 25px 25px 25px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1{
+    color:purple;
+    font-family:'Courier New', Courier, monospace;
+}
+
+button {
+    color:blue;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#resultsTable {/*applies to th, td, table*/
+    margin-left: auto;
+    margin-right: auto;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(0, 63, 0);
+    border:1px solid black;
+}
+#resultsTable th{
+    width:20%;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    background-color: #3700fc;
+    color:white;
+}
+#resultsTable td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color:aliceblue;
+}
+#resultsTable td:hover {
+    background-color: #c9abab;
+}
