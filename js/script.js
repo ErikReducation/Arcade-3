@@ -4,6 +4,7 @@
 //Number of total wins
 //Win percentage
 //Display these in farewell as HTML table
+//Add badge based on performance
 
 
 
@@ -24,10 +25,11 @@ let wins = 0;
 
 //functions
 
-function buildMyTable() { //build the results table. In function because it's something I want to do multiple times 
-    //and I don't want to write this code 3 times. Can't be a variable at the top of the js file because it will be initialized once
-    //and won't be updated, even if used in a template literal later. It's pretty cool that you can put template literals
-    //in a function and then put a function into template literals and add that to HTML!
+function buildMyTable() { //build the results table in a function because it's something I want to do multiple times 
+    //and I don't want to write this code 3 times. Can't be a variable at the top of the js file because it will be 
+    //initialized once and won't be updated, even if used in a template literal later. It's pretty cool that you can 
+    //put template literals in a function and then put a function into template literals and add that to HTML!
+    let percentWin = ((wins/timesPlayed)*100).toFixed();//calculate win percentage with 2 digits after period
     let baseTable = `<br><br>
     <table name="resultsTable" id="resultsTable">
     <tr>
@@ -38,13 +40,46 @@ function buildMyTable() { //build the results table. In function because it's so
     <tr>
         <td>${timesPlayed}</td>
         <td>${wins}</td>
-        <td>${(wins/timesPlayed)*100}%</td>
+        <td>${percentWin}%</td>
     </tr>
-    </table>`;
-    let medal = '';
-    switch (wins) {
+    </table>`;//this is the results table
+    let medal = '';//empty strings for template literals
+    let medalImageLink = "";
+    let altText = "";
+    switch (true) {//switch checking to see if conditions evaluate to true
+        case (percentWin < 26)://catches 25.5% following specifications
+            medal = "Stone";
+            medalImageLink = "images/stone.jpeg";
+            altText = "A circular stone from Chichen Itza";
+            break;
+        case (percentWin < 51):
+            medal = "Bronze";
+            medalImageLink = "images/bronze.png";
+            altText = "Generic clip art bronze medal";
+            break;
+        case (percentWin < 76):
+            medal = "Iron";
+            medalImageLink = "images/iron.png";
+            altText = "Generic clip art metallic medal";
+            break;
+        case (percentWin <= 100):
+            medal = "Silicon";
+            medalImageLink = "images/silicon.jpg";
+            altText = "A silicon wafer";
+            //only non-public domain image used
+            break;
+        default:
+            medal = "Error";
+            break;
     }
-    return baseTable;
+    baseTable += `<br><br>You earned the ${medal} badge. <br><br> 
+    <img src="${medalImageLink}" alt = "${altText}">`; //let player know which medal they won
+    
+    if (medal === "Silicon") {//add attribution under image for only non-public domain image used
+        baseTable += `<br><br> Photo by Rob Bulmahn from https://www.flickr.com/photos/rbulmahn/8028286354 licensed under https://creativecommons.org/licenses/by/2.0/`;
+    } else {}
+
+return baseTable;
 }
 
 function guess() {//guessing game
@@ -148,10 +183,10 @@ do {
     }
 } while (!valid)
 
-} 
+} //end guessing game
 
 let delphi = function() {//magic eight ball
-    
+
 //variables
 
 let input = "";
@@ -226,7 +261,7 @@ if (nameEmpty){
             } while (!valid)
 
     } while (!doneSoothing)
-    
+
 
 
 //handle done with play session prompt (sends user back to buttons or to goodbye)
@@ -252,11 +287,11 @@ do {
     }
 } while (!valid)
 
-//Internal soothing functions
+//Internal soothing function
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }    
-};
+};//end magic 8 ball
 
 let gladiator = () => {//bear ninja hunter
 
@@ -466,4 +501,4 @@ do {
     }
 } while (!valid)
 
-};
+}; //end bnh
