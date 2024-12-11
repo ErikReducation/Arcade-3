@@ -29,7 +29,7 @@ function buildMyTable() { //build the results table in a function because it's s
     //and I don't want to write this code 3 times. Can't be a variable at the top of the js file because it will be 
     //initialized once and won't be updated, even if used in a template literal later. It's pretty cool that you can 
     //put template literals in a function and then put a function into template literals and add that to HTML!
-    let percentWin = ((wins/timesPlayed)*100).toFixed();//calculate win percentage with 2 digits after period
+    let percentWin = ((wins/timesPlayed)*100).toFixed(2);//calculate win percentage with 2 digits after period
     let baseTable = `<br><br>
     <table name="resultsTable" id="resultsTable">
     <tr>
